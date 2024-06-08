@@ -1,0 +1,66 @@
+/// max speed forward
+alive=false
+dropoff=false
+
+forwardspd = 10;
+reversespd = -2;
+turnradius = 0.4;
+acc = 0.04;
+
+
+/// movement in step
+
+if alive = true{
+	visable=true
+
+var a = keyboard_check(ord("A"));
+var d = keyboard_check(ord("D"));
+var w = keyboard_check(ord("W"));
+var s = keyboard_check(ord("S"));
+
+if (w) 
+{
+ speed += acc;
+}
+
+if (d)
+{
+ direction -= speed*turnradius;
+}
+
+if (s) 
+{
+ speed -= acc;
+}
+
+if (a)
+{
+ direction += speed*turnradius;
+}
+
+//braking
+if !w and !s
+{
+ if friction < 1 friction += 0.001;
+}
+else friction = 0;
+
+//set max speed forward and reverse
+if speed > forwardspd speed = forwardspd;
+if speed < reversespd speed = reversespd;
+
+
+image_angle = direction;
+}
+
+/// @description Insert description here
+// You can write your code in this editor
+dropoff=true
+
+if alive=true && dropoff=true{
+	oPlayer.alive=true
+	alive=false
+	oPlayer.x=x-32
+	oPlayer.y=y-0
+}
+	
